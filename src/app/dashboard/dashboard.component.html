@@ -1,0 +1,14 @@
+<div *ngFor="let itm of arr">
+    <mat-card style="margin: 1rem;">
+        <mat-card-title>{{ itm.title }}</mat-card-title>
+        <mat-card-subtitle>
+            {{ itm.ended | date }}
+            <span *ngIf="!isExpired(itm.ended)">({{ expiredIn(itm.ended) }})</span>
+            <span *ngIf="isExpired(itm.ended)" style="color: red;">({{ expiredIn(itm.ended) }})</span>
+        </mat-card-subtitle>
+    </mat-card>
+</div>
+
+<button mat-fab color="primary" class="floating-button">
+    <mat-icon>add</mat-icon>
+</button>
