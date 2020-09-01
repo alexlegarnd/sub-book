@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
+  renew: string;
+
   constructor() { }
 
   ngOnInit(): void {

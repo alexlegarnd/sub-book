@@ -1,6 +1,17 @@
-export interface Subscription {
-    id: number;
+import * as moment from 'moment';
+
+
+export class Subscription {
     title: string;
-    ended: Date;
+    started: moment.Moment;
+    ended?: moment.Moment;
+    interval?: Interval;
+    last?: moment.Moment;
     autorenew: boolean;
+    expired: boolean;
+}
+
+export class Interval {
+    value: number;
+    unit: moment.unitOfTime.DurationConstructor;
 }

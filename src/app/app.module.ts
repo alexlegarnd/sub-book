@@ -10,19 +10,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent } from './add/add.component';
-import { LoginComponent } from './login/login.component';
 import { SubscriptionService } from './subscription.service';
-import { AuthGuard } from './auth.guard';
 import { AuthenticationService } from './authentication.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AddComponent,
-    LoginComponent
+    AddComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +33,13 @@ import { AuthenticationService } from './authentication.service';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
-  providers: [SubscriptionService, AuthGuard, AuthenticationService],
+  providers: [SubscriptionService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
