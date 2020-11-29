@@ -14,6 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent } from './add/add.component';
@@ -37,7 +39,9 @@ import { AuthenticationService } from './authentication.service';
     MatInputModule,
     MatButtonToggleModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatSelectModule,
+    FormsModule
   ],
   providers: [SubscriptionService, AuthenticationService],
   bootstrap: [AppComponent]

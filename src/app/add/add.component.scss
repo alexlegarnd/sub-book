@@ -7,8 +7,18 @@
     width: 100%;
 }
 
-#renew {
+#mode {
     width: 11rem;
     left: 50%;
     margin-left: -5.5rem;
+}
+
+.responseButton {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.responseButton button {
+    margin-right: .5rem;
+    margin-left: .5rem;
 }

@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     }
 
     daysLeft(s: Subscription): number {
-        return s.started.diff(moment.now());
+        return moment(s.ended).diff(moment.now(), 'days');
     }
 
     nextPayment(s: Subscription): number {

@@ -1,20 +1,47 @@
 <div id="container">
     <mat-form-field class="example-full-width">
         <mat-label>Nom du service</mat-label>
-        <input matInput placeholder="Ex. Netflix, Amazon Prime...">
+        <input matInput placeholder="Ex. Netflix, Amazon Prime..." [(ngModel)]="title">
     </mat-form-field>
 
-    <mat-button-toggle-group id="renew" name="renew" aria-label="Style" [(value)]="renew">
+    <mat-form-field class="example-full-width">
+        <mat-label>Date de début</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="started">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-button-toggle-group id="mode" name="mode" aria-label="Style" [(value)]="mode">
         <mat-button-toggle value="unique">Unique</mat-button-toggle>
         <mat-button-toggle value="subscription">Abonnement</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <div *ngIf="renew === 'unique'">
+    <div *ngIf="mode === 'unique'">
         <mat-form-field class="example-full-width">
             <mat-label>Date de fin</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="ended">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+    </div>
+
+    <div *ngIf="mode === 'subscription'">
+        <mat-form-field class="example-full-width">
+            <mat-label>Interval</mat-label>
+            <input matInput type="number" [(ngModel)]="intervalNumber" (input)="onChange()">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Type d'interval</mat-label>
+            <mat-select [(ngModel)]="choosedIntervalMode" (selectionChange)="onChange()">
+                <mat-option *ngFor="let i of intervalMode" [value]="i[0]">
+                    {{ i[1] }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="responseButton">
+        <button mat-raised-button color="primary" (click)="submit()">Ajouter</button>
+        <button mat-raised-button routerLink="/dashboard">Annuler</button>
     </div>
 </div>
