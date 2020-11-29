@@ -68,7 +68,7 @@ export class AddComponent implements OnInit {
                 }
             }
             this.subService.push(sub);
-            this.router.navigate(['/dashboard'])
+            this.router.navigate(['/dashboard']);
         }
     }
 

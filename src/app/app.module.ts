@@ -16,17 +16,23 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent } from './add/add.component';
 import { SubscriptionService } from './subscription.service';
 import { AuthenticationService } from './authentication.service';
+import { DetailComponent, DeleteEntryDialog } from './detail/detail.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AddComponent
+    AddComponent,
+    DetailComponent,
+    DeleteEntryDialog
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,9 @@ import { AuthenticationService } from './authentication.service';
     MatDatepickerModule,
     MatMomentDateModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [SubscriptionService, AuthenticationService],
   bootstrap: [AppComponent]

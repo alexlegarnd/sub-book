@@ -2,6 +2,7 @@ import * as moment from 'moment';
 
 
 export class Subscription {
+    id?: number;
     title: string;
     started: moment.Moment;
     ended?: moment.Moment;

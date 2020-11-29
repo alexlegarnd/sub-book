@@ -1,0 +1,23 @@
+<div style="margin: 1.5rem;">
+    <button mat-button color="primary" routerLink="/dashboard">
+        <mat-icon aria-hidden="false" aria-label="Arrow back icon">arrow_back</mat-icon>
+        Retour
+    </button>
+    <h2>{{ sub?.title }}</h2>
+    <div>Date de début : {{ sub?.started | date }}</div>
+    <div *ngIf="sub?.autorenew">
+        <div>Type : Renouvellement automatique</div>
+        <div>Interval : {{ getInterval() }}</div>
+    </div>
+    <div *ngIf="!sub?.autorenew">
+        <div>Type : Unique</div>
+        <div>Date de fin : {{ sub?.ended | date }}</div>
+    </div>
+    <div>Expiré : {{ (sub?.expired) ? 'oui' : 'non' }}</div>
+    <div style="text-align: center;">
+        <button mat-button color="warn" (click)="delete()">
+            <mat-icon aria-hidden="false" aria-label="Delete forever icon">delete_forever</mat-icon>
+            Supprimer
+        </button>
+    </div>
+</div>

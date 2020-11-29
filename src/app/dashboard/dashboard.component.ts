@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from '../subscription';
 import { SubscriptionService } from '../subscription.service';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
     arr: Subscription[] = [];
 
-    constructor(subService: SubscriptionService) {
+    constructor(subService: SubscriptionService, private router: Router) {
         subService.get().then((res) => {
             for (const itm of res) {
                 this.arr.push(itm);
@@ -30,6 +31,10 @@ export class DashboardComponent implements OnInit {
             return r.diff(moment.now(), 'days');
         }
         return 0;
+    }
+
+    showDetail(id: number): void {
+        this.router.navigateByUrl('/detail?id=' + id);
     }
 
     ngOnInit(): void {

@@ -1,5 +1,5 @@
 <div *ngFor="let itm of arr">
-    <mat-card style="margin: 1rem;">
+    <mat-card style="margin: 1rem;" (click)="showDetail(itm.id)">
         <mat-card-title *ngIf="!itm.expired">{{ itm.title }}</mat-card-title>
         <mat-card-title *ngIf="itm.expired" style="color: gray;">{{ itm.title }}</mat-card-title>
         <mat-card-subtitle *ngIf="!itm.autorenew">
@@ -12,7 +12,7 @@
         </mat-card-subtitle>
     </mat-card>
 </div>
-<div *ngIf="!arr || arr.lenght === 0" style="margin-top: 45%;">Vous n'avez aucun abonnement</div>
+<div *ngIf="!arr || arr.length === 0" class="centered">Vous n'avez aucun abonnement</div>
 
 <button mat-fab color="primary" class="floating-button" routerLink="/add">
     <mat-icon>add</mat-icon>

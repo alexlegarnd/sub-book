@@ -24,6 +24,11 @@ export class SubscriptionService {
         });
     }
 
+    public findById(id: number): Subscription | null {
+        const res = this.isIdExist(id);
+        return (res) ? res as Subscription : null;
+    }
+
     private updateDate(current: Subscription[]): Subscription[] {
         const n: Subscription[] = [];
         current.forEach((c) => {
@@ -47,8 +52,40 @@ export class SubscriptionService {
     }
 
     public push(sub: Subscription): Subscription[] {
-        this.context.push(sub);
+        if (sub.id) {
+            const rrr = this.isIdExist(sub.id);
+            if (rrr) {
+                const i: number = this.context.indexOf(rrr as Subscription);
+                this.context[i] = sub;
+            }
+        } else {
+            let inc = 0;
+            do {
+                sub.id = this.context.length + inc;
+                inc++;
+            } while (this.isIdExist(sub.id));
+            this.context.push(sub);
+        }
         return this.context;
+    }
+
+    public delete(id: number): void {
+        const rrr = this.isIdExist(id);
+        if (rrr) {
+            const i: number = this.context.indexOf(rrr as Subscription);
+            this.context.splice(id, 1);
+            this.context.forEach((val, i) => {
+                val.id = i;
+            });
+        }
+    }
+
+    private isIdExist(id: number): Subscription | boolean {
+        const res: Subscription[] = this.context.filter((c) => id === c.id);
+        if (res.length === 1) {
+            return res[0];
+        }
+        return false;
     }
 
     private save(): void {
