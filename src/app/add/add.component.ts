@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SubscriptionService } from '../subscription.service';
 import { Subscription, Interval } from '../subscription';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-add',
@@ -29,7 +30,10 @@ export class AddComponent implements OnInit {
     choosedIntervalMode: string[];
 
 
-    constructor(private subService: SubscriptionService, private router: Router) { }
+    constructor(
+        private subService: SubscriptionService,
+        private router: Router,
+        public dialog: MatDialog) { }
 
     ngOnInit(): void {
     }
@@ -69,6 +73,11 @@ export class AddComponent implements OnInit {
             }
             this.subService.push(sub);
             this.router.navigate(['/dashboard']);
+        } else {
+            this.dialog.open(ErrorDialog, {
+                width: '250px',
+                data: {}
+            });
         }
     }
 
@@ -92,5 +101,17 @@ export class AddComponent implements OnInit {
         }
         return true;
     }
+
+}
+
+@Component({
+    selector: 'error-dialog',
+    templateUrl: 'error.dialog.html',
+})
+export class ErrorDialog {
+
+    constructor(
+        public dialogRef: MatDialogRef<ErrorDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: Object) { }
 
 }

@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     }
 
     showDetail(id: number): void {
-        this.router.navigateByUrl('/detail?id=' + id);
+        this.router.navigate(['/detail', id]);
     }
 
     ngOnInit(): void {

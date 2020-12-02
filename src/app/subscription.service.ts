@@ -32,8 +32,10 @@ export class SubscriptionService {
     private updateDate(current: Subscription[]): Subscription[] {
         const n: Subscription[] = [];
         current.forEach((c) => {
-            console.log(c.autorenew);
             if (c.autorenew) {
+                if (!c.last) {
+                    c.last = c.started;
+                }
                 let r = moment(c.last).add(c.interval.value, c.interval.unit);
                 let diff: number = r.diff(moment.now(), 'days');
                 while (diff < 0) {

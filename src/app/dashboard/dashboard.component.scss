@@ -1,5 +1,5 @@
 .floating-button {
-    position: absolute;
+    position: fixed;
     right: 2rem;
     bottom: 2rem;
 }
@@ -11,4 +11,8 @@
     margin-top: -50px;
     margin-left: -100px;
     text-align: center;
+}
+
+.content {
+    margin-top: 4rem;
 }

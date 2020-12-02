@@ -1,19 +1,21 @@
-<div *ngFor="let itm of arr">
-    <mat-card style="margin: 1rem;" (click)="showDetail(itm.id)">
-        <mat-card-title *ngIf="!itm.expired">{{ itm.title }}</mat-card-title>
-        <mat-card-title *ngIf="itm.expired" style="color: gray;">{{ itm.title }}</mat-card-title>
-        <mat-card-subtitle *ngIf="!itm.autorenew">
-            {{ itm.ended | date }}
-            <span *ngIf="!itm.expired">({{ daysLeft(itm) }} jours restants)</span>
-            <span *ngIf="itm.expired" style="color: red;">(Expiré)</span>
-        </mat-card-subtitle>
-        <mat-card-subtitle *ngIf="itm.autorenew">
-            Dernier paiement : {{ itm.last | date }}, Prochain paiement dans {{ nextPayment(itm) }} jours
-        </mat-card-subtitle>
-    </mat-card>
+<div class="content">
+    <div *ngFor="let itm of arr">
+        <mat-card style="margin: 1rem;" (click)="showDetail(itm.id)">
+            <mat-card-title *ngIf="!itm.expired">{{ itm.title }}</mat-card-title>
+            <mat-card-title *ngIf="itm.expired" style="color: gray;">{{ itm.title }}</mat-card-title>
+            <mat-card-subtitle *ngIf="!itm.autorenew">
+                {{ itm.ended | date }}
+                <span *ngIf="!itm.expired">({{ daysLeft(itm) }} jours restants)</span>
+                <span *ngIf="itm.expired" style="color: red;">(Expiré)</span>
+            </mat-card-subtitle>
+            <mat-card-subtitle *ngIf="itm.autorenew">
+                Dernier paiement : {{ itm.last | date }}, Prochain paiement dans {{ nextPayment(itm) }} jours
+            </mat-card-subtitle>
+        </mat-card>
+    </div>
+    <div *ngIf="!arr || arr.length === 0" class="centered">Vous n'avez aucun abonnement</div>
+    
+    <button mat-fab color="primary" class="floating-button" routerLink="/add">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>
-<div *ngIf="!arr || arr.length === 0" class="centered">Vous n'avez aucun abonnement</div>
-
-<button mat-fab color="primary" class="floating-button" routerLink="/add">
-    <mat-icon>add</mat-icon>
-</button>

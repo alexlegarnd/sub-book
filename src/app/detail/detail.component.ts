@@ -22,6 +22,9 @@ export class DetailComponent implements OnInit {
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
         this.sub = this.subService.findById(+id);
+        if (!this.sub) {
+            this.router.navigate(['/dashboard']);
+        }
     }
 
     getInterval(): string {

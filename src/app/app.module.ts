@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AddComponent } from './add/add.component';
+import { AddComponent, ErrorDialog } from './add/add.component';
 import { SubscriptionService } from './subscription.service';
 import { AuthenticationService } from './authentication.service';
 import { DetailComponent, DeleteEntryDialog } from './detail/detail.component';
@@ -32,7 +32,8 @@ import { environment } from '../environments/environment';
     DashboardComponent,
     AddComponent,
     DetailComponent,
-    DeleteEntryDialog
+    DeleteEntryDialog,
+    ErrorDialog
   ],
   imports: [
     BrowserModule,
