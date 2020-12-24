@@ -1,3 +1,9 @@
-<mat-toolbar color="primary">Vos abonnements</mat-toolbar>
+<mat-toolbar color="primary" style="color: white">
+    Vos abonnements
+    <span class="flexExpand"></span>
+    <div >
+        <a mat-button [routerLink]="'/about'"><mat-icon aria-hidden="false" aria-label="Example home icon">help_outline</mat-icon></a>
+      </div>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

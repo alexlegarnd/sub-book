@@ -21,10 +21,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent, ErrorDialog } from './add/add.component';
 import { SubscriptionService } from './subscription.service';
-import { AuthenticationService } from './authentication.service';
 import { DetailComponent, DeleteEntryDialog } from './detail/detail.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { environment } from '../environments/environment';
     AddComponent,
     DetailComponent,
     DeleteEntryDialog,
-    ErrorDialog
+    ErrorDialog,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +53,7 @@ import { environment } from '../environments/environment';
     MatDialogModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [SubscriptionService, AuthenticationService],
+  providers: [SubscriptionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

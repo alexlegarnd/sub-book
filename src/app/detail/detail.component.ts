@@ -25,18 +25,19 @@ export class DetailComponent implements OnInit {
         if (!this.sub) {
             this.router.navigate(['/dashboard']);
         }
+        window.scroll(0,0);
     }
 
     getInterval(): string {
         if (this.sub && this.sub.interval) {
             let unit: string = '';
             const int: Interval = this.sub.interval;
-            if (int.unit === 'days') {
-                unit = 'jours';
-            } else if (int.unit === 'months') {
+            if (int.unit.startsWith('d')) {
+                unit = (int.value === 1) ? 'jour' : 'jours'
+            } else if (int.unit.startsWith('m')) {
                 unit = 'mois';
-            } else if (int.unit === 'years') {
-                unit = 'années';
+            } else if (int.unit.startsWith('y')) {
+                unit = (int.value === 1) ? 'année' : 'années';
             }
             return `${int.value} ${unit}`;
         }

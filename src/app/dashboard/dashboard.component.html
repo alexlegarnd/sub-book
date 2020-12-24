@@ -9,7 +9,7 @@
                 <span *ngIf="itm.expired" style="color: red;">(Expiré)</span>
             </mat-card-subtitle>
             <mat-card-subtitle *ngIf="itm.autorenew">
-                Dernier paiement : {{ itm.last | date }}, Prochain paiement dans {{ nextPayment(itm) }} jours
+                Prochain paiement : {{ itm.last | date }} (dans {{ nextPayment(itm) }})
             </mat-card-subtitle>
         </mat-card>
     </div>

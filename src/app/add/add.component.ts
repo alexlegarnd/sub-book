@@ -36,6 +36,7 @@ export class AddComponent implements OnInit {
         public dialog: MatDialog) { }
 
     ngOnInit(): void {
+        window.scroll(0,0);
     }
 
     onChange(): void {

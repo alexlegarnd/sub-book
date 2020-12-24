@@ -30,6 +30,7 @@ export class SubscriptionService {
     }
 
     private updateDate(current: Subscription[]): Subscription[] {
+        console.log('[INFO] Updating subscriptions...');
         const n: Subscription[] = [];
         current.forEach((c) => {
             if (c.autorenew) {
@@ -38,10 +39,18 @@ export class SubscriptionService {
                 }
                 let r = moment(c.last).add(c.interval.value, c.interval.unit);
                 let diff: number = r.diff(moment.now(), 'days');
-                while (diff < 0) {
-                    c.last = moment(c.last).add(1, 'months');
-                    r = moment(c.last).add(c.interval.value, c.interval.unit);
-                    diff = r.diff(moment.now(), 'days');
+                if (diff === 0) {
+                    let diff: number = r.diff(moment.now(), 'hours');
+                    if (diff <= 0) {
+                        c.last = moment(c.last).add(c.interval.value, c.interval.unit);
+                    }
+                } else if (diff < 0) {
+                    while (diff < 0) {
+                        const unit = (c.interval.unit === 'm') ? 'months' : c.interval.unit;
+                        c.last = moment(c.last).add(c.interval.value, unit);
+                        r = moment(c.last).add(c.interval.value, c.interval.unit);
+                        diff = r.diff(moment.now(), 'hours');
+                    } 
                 }
             } else if (c.ended) {
                 const d: number = moment(c.ended).diff(moment.now(), 'days');
@@ -50,6 +59,7 @@ export class SubscriptionService {
             }
             n.push(c);
         });
+        console.log('[INFO] Updated!');
         return n;
     }
 
@@ -92,6 +102,7 @@ export class SubscriptionService {
 
     private save(): void {
         localStorage.setItem('data', JSON.stringify(this.context));
+        console.log('[INFO] Saved!');
     }
 
 }

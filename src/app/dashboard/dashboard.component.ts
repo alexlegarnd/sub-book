@@ -25,12 +25,17 @@ export class DashboardComponent implements OnInit {
         return moment(s.ended).diff(moment.now(), 'days');
     }
 
-    nextPayment(s: Subscription): number {
+    nextPayment(s: Subscription): string {
         if (s.last) {
             const r = moment(s.last).add(s.interval.value, s.interval.unit);
-            return r.diff(moment.now(), 'days');
+            let d = r.diff(moment.now(), 'days');
+            if (d === 0) {
+                d = r.diff(moment.now(), 'hours');
+                return (d <= 1) ? `${d} heure` : `${d} heures`;
+            }
+            return (d <= 1) ? `${d} jour` : `${d} jours`;
         }
-        return 0;
+        return "Pas de prochain paiement";
     }
 
     showDetail(id: number): void {

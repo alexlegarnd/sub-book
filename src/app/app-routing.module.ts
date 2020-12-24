@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddComponent } from './add/add.component';
 import { DetailComponent } from './detail/detail.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'add', component: AddComponent },
   { path: 'detail/:id', component: DetailComponent},
+  { path: 'about', component: AboutComponent },
   { path: '**', redirectTo: '/dashboard' }
 ];
 
